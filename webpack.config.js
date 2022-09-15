@@ -22,12 +22,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
-      templateContent: `
-      <html>
-        <body>
-          <div id="root"></div>
-        </body>
-      </html>`,
+      template: './src/index.html',
+      // templateContent: `
+      // <html>
+      //   <body>
+      //     <div id="root"></div>
+      //   </body>
+      // </html>`,
     }),
 
     new ESLintPlugin(),
@@ -53,7 +54,17 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+          'postcss-loader',
+        ],
       },
       {
         test: /\.s[ac]ss$/i,
