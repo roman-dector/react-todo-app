@@ -82,6 +82,14 @@ h6 {
 }
 
 /* global styles */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  /* Браузер сначала попробует найти шрифт локально */
+  src: local('Roboto');
+}
+
+body {
+  font-family: 'Roboto', 'Arial', sans-serif;
+}

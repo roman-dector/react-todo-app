@@ -1,0 +1,6 @@
+.label {
+  display: flex;
+  gap: 3px;
+  font-size: 13px;
+  font-weight: 600;
+}

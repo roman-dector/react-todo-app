@@ -1,3 +1,4 @@
+import '../../index.css'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { TaskCard } from './TaskCard'
@@ -12,6 +13,7 @@ export default {
     },
     description: {
       type: 'string',
+      defaultValue: '',
     },
     isCompleted: {
       type: 'boolean',
@@ -23,6 +25,7 @@ export default {
     },
     labels: {
       controll: 'array',
+      defaultValue: [],
     },
   },
 } as ComponentMeta<typeof TaskCard>
@@ -31,12 +34,22 @@ const Template: ComponentStory<typeof TaskCard> = args => (
   <TaskCard {...args} />
 )
 
-export const LightTheme = Template.bind({})
-LightTheme.args = {
-  labels: [],
+export const JustTitle = Template.bind({})
+
+export const WithLongDescription = Template.bind({})
+WithLongDescription.args = {
+  description:
+    'Some veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery long descriprion here',
 }
 
-export const DarkTheme = Template.bind({})
-DarkTheme.args = {
-  labels: [],
+export const WithLabels = Template.bind({})
+WithLabels.args = {
+  labels: [
+    { id: 1, name: 'ToDo', color: 'green' },
+    { id: 2, name: 'Calendar', color: 'purple' },
+    { id: 3, name: 'Waiting', color: '#add8e6' },
+    { id: 4, name: 'ToDo', color: 'green' },
+    { id: 5, name: 'Calendar', color: 'purple' },
+    { id: 6, name: 'Waiting', color: '#add8e6' },
+  ],
 }

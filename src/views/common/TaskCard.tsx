@@ -10,36 +10,38 @@ import {
 } from '@mui/icons-material'
 
 import { TaskPrioritiesType } from '../../dal/apiDataTypes'
+import { TaskLabel } from './TaskLabel'
 
 type TaskCardPropsType = {
   title: string
   description: string | null
   isCompleted: boolean
   priority: TaskPrioritiesType
-  labels: string[] | []
+  labels: { id: number; name: string; color: string }[]
 }
 
 export const TaskCard: FC<TaskCardPropsType> = props => {
   return (
     <div className={styles['task-card']}>
-      <TaskCheckbox priority={props.priority} />
-      <div>
-        <div className={styles['task-card-title']}>{props.title}</div>
+      <div className={styles['checkbox-container']}>
+        <TaskCheckbox priority={props.priority} />
+      </div>
 
-        {props.description === null ? null : (
-          <div>{props.description}</div>
-        )}
+      <div className={styles['title']}>{props.title}</div>
 
-        {props.labels.length === 0
-          ? null
-          : props.labels.map(label => <TaskLabel label={label} />)}
+      <div className={styles['description']}>{props.description}</div>
+
+      <div className={styles['labels-row']}>
+        {props.labels.map(label => (
+          <TaskLabel
+            key={label.id}
+            color={label.color}
+            name={label.name}
+          />
+        ))}
       </div>
     </div>
   )
-}
-
-const TaskLabel: FC<{ label: string }> = props => {
-  return <span>{props.label}</span>
 }
 
 const TaskCheckbox: FC<{
@@ -54,13 +56,13 @@ const TaskCheckbox: FC<{
       checkboxColor = 'blue'
       break
     case 3:
-      checkboxColor = 'yellow'
+      checkboxColor = 'orange'
       break
     case 4:
       checkboxColor = 'red'
       break
     default:
-      checkboxColor = 'grey'
+      checkboxColor = '#808080'
       break
   }
 
@@ -71,45 +73,51 @@ const TaskCheckbox: FC<{
         setChecked(!checked)
       }}
       sx={{
+        width: '24px',
+        height: '24px',
         padding: 0,
         color: checkboxColor,
         '&.Mui-checked': {
           color: checkboxColor,
         },
       }}
-      icon={
-        <div
-          style={{
-            width: '24px',
-            height: '24px',
-            position: 'relative',
-          }}
-        >
-          <Circle
-            sx={{
-              color: checkboxColor,
-              opacity: 0.15,
-              position: 'absolute',
-              margin: 'auto',
-              top: 0,
-              left: 0,
-              bottom: 0,
-              right: 0,
-            }}
-          />
-          <CircleOutlined
-            sx={{
-              position: 'absolute',
-              margin: 'auto',
-              top: 0,
-              left: 0,
-              bottom: 0,
-              right: 0,
-            }}
-          />
-        </div>
-      }
-      checkedIcon={<CheckCircle />}
+      icon={<CheckboxUncheckedIcon sxColor={checkboxColor} />}
+      checkedIcon={<CheckCircle sx={{ color: checkboxColor }} />}
     />
+  )
+}
+
+const CheckboxUncheckedIcon: FC<{ sxColor: string }> = props => {
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+      }}
+    >
+      <Circle
+        sx={{
+          color: props.sxColor,
+          opacity: 0.15,
+          position: 'absolute',
+          margin: 'auto',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+        }}
+      />
+      <CircleOutlined
+        sx={{
+          position: 'absolute',
+          margin: 'auto',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+        }}
+      />
+    </div>
   )
 }
