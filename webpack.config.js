@@ -23,12 +23,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
       template: './src/index.html',
-      // templateContent: `
-      // <html>
-      //   <body>
-      //     <div id="root"></div>
-      //   </body>
-      // </html>`,
     }),
 
     new ESLintPlugin(),
