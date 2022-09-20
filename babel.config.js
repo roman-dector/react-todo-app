@@ -1,14 +1,11 @@
 module.exports = {
   presets: [
-    '@babel/preset-react', // JSX в ES5
+    '@babel/preset-env', // ES6/ES7/ES8 в ES5
     [
-      ('@babel/preset-env',
+      '@babel/preset-react', // JSX в ES5
       {
-        targets: {
-          chrome: '58',
-          ie: '11',
-        },
-      }),
+        runtime: 'automatic',
+      },
     ],
     '@babel/preset-typescript',
   ],
