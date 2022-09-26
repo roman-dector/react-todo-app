@@ -11,16 +11,9 @@ import {
 
 import { TaskPrioritiesType } from '../../dal/apiDataTypes'
 import { TaskLabel } from './TaskLabel'
+import { TaskType } from '../../dal/apiDataTypes'
 
-type TaskCardPropsType = {
-  title: string
-  description: string | null
-  isCompleted: boolean
-  priority: TaskPrioritiesType
-  labels: { id: number; name: string; color: string }[]
-}
-
-export const TaskCard: FC<TaskCardPropsType> = props => {
+export const TaskCard: FC<TaskType> = props => {
   return (
     <div className={styles['task-card']}>
       <div className={styles['checkbox-container']}>

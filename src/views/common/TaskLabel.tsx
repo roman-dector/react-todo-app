@@ -7,7 +7,7 @@ import { FC } from 'react'
 export const TaskLabel: FC<{ color: string; name: string }> =
   props => {
     return (
-      <div className={styles.label}>
+      <div data-testid={'TaskLabel-testID'} className={styles.label}>
         <SellOutlined
           sx={{
             color: props.color,

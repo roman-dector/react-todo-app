@@ -93,3 +93,7 @@ h6 {
 body {
   font-family: 'Roboto', 'Arial', sans-serif;
 }
+
+html {
+  --tasks-delimiter-color: #808080;
+}
