@@ -9,11 +9,55 @@ const defaultTasks = [
     id: 13212,
     projectId: 1224,
     title: 'Make smth',
-    description: '',
+    description:
+      'Some veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery long descriprion here',
     isCompleted: false,
     isArchived: false,
     priority: 1,
-    labels: [] as LabelType[],
+    labels: [
+      { id: 1, name: 'ToDo', color: 'green' },
+      { id: 2, name: 'Calendar', color: 'purple' },
+      { id: 3, name: 'Waiting', color: '#add8e6' },
+      { id: 4, name: 'ToDo', color: 'green' },
+      { id: 5, name: 'Calendar', color: 'purple' },
+      { id: 6, name: 'Waiting', color: '#add8e6' },
+    ],
+  },
+  {
+    id: 13212,
+    projectId: 1224,
+    title: 'Make smth',
+    description:
+      'Some veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery long descriprion here',
+    isCompleted: false,
+    isArchived: false,
+    priority: 1,
+    labels: [
+      { id: 1, name: 'ToDo', color: 'green' },
+      { id: 2, name: 'Calendar', color: 'purple' },
+      { id: 3, name: 'Waiting', color: '#add8e6' },
+      { id: 4, name: 'ToDo', color: 'green' },
+      { id: 5, name: 'Calendar', color: 'purple' },
+      { id: 6, name: 'Waiting', color: '#add8e6' },
+    ],
+  },
+  {
+    id: 13212,
+    projectId: 1224,
+    title: 'Make smth',
+    description:
+      'Some veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery long descriprion here',
+    isCompleted: false,
+    isArchived: false,
+    priority: 1,
+    labels: [
+      { id: 1, name: 'ToDo', color: 'green' },
+      { id: 2, name: 'Calendar', color: 'purple' },
+      { id: 3, name: 'Waiting', color: '#add8e6' },
+      { id: 4, name: 'ToDo', color: 'green' },
+      { id: 5, name: 'Calendar', color: 'purple' },
+      { id: 6, name: 'Waiting', color: '#add8e6' },
+    ],
   },
 ]
 

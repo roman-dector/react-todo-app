@@ -1,0 +1,13 @@
+.icon-background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1px;
+  border-radius: 3px;
+  height: min-content;
+}
+
+.icon-background:hover {
+  background-color: #cbcbcb;
+}

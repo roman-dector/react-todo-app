@@ -9,30 +9,58 @@ import {
   CircleOutlined,
 } from '@mui/icons-material'
 
+import { EditIcon, MoreHorizIcon, DragPoinIcon } from './Icons'
+
 import { TaskPrioritiesType } from '../../dal/apiDataTypes'
 import { TaskLabel } from './TaskLabel'
 import { TaskType } from '../../dal/apiDataTypes'
 
 export const TaskCard: FC<TaskType> = props => {
+  const [hover, setHover] = useState(false)
+
   return (
-    <div className={styles['task-card']}>
-      <div className={styles['checkbox-container']}>
-        <TaskCheckbox priority={props.priority} />
+    <div
+      className={styles['task-card']}
+      onMouseEnter={() => {
+        setHover(true)
+      }}
+      onMouseLeave={() => {
+        setHover(false)
+      }}
+    >
+      <div>{hover ? <DragPoinIcon /> : null}</div>
+
+      <div className={styles['task-body']}>
+        <div className={styles['checkbox-container']}>
+          <TaskCheckbox priority={props.priority} />
+        </div>
+
+        <div className={styles['title']}>{props.title}</div>
+
+        <div className={styles['description']}>
+          {props.description}
+        </div>
+
+        <div className={styles['labels-row']}>
+          {props.labels.map(label => (
+            <TaskLabel
+              key={label.id}
+              color={label.color}
+              name={label.name}
+            />
+          ))}
+        </div>
+        <div>{hover ? <TaskEditMenu /> : null}</div>
       </div>
+    </div>
+  )
+}
 
-      <div className={styles['title']}>{props.title}</div>
-
-      <div className={styles['description']}>{props.description}</div>
-
-      <div className={styles['labels-row']}>
-        {props.labels.map(label => (
-          <TaskLabel
-            key={label.id}
-            color={label.color}
-            name={label.name}
-          />
-        ))}
-      </div>
+const TaskEditMenu: FC<{}> = props => {
+  return (
+    <div className={styles['task-edit-menu']}>
+      <EditIcon />
+      <MoreHorizIcon />
     </div>
   )
 }

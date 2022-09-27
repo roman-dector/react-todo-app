@@ -1,11 +1,18 @@
+.add-task-container {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  grid-template-columns: 24px 100%;
+}
+
 .add-task {
   display: flex;
   align-items: center;
   gap: 10px;
+  grid-column-start: 2;
 
   font-size: 14px;
 
-  padding: 8px;
+  padding: 8px 0 8px 0;
 }
 
 .add-task:hover span {

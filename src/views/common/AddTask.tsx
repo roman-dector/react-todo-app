@@ -8,22 +8,24 @@ export const AddTask: FC<{}> = props => {
   const [hover, setHover] = useState(false)
 
   return (
-    <div
-      onMouseEnter={() => {
-        setHover(true)
-      }}
-      onMouseLeave={() => {
-        setHover(false)
-      }}
-      className={styles['add-task']}
-    >
-      {hover ? (
-        <AddCircleOutlined sx={{ color: '#a71717' }} />
-      ) : (
-        <Add sx={{ color: '#a71717' }} />
-      )}
+    <div className={styles['add-task-container']}>
+      <div
+        onMouseEnter={() => {
+          setHover(true)
+        }}
+        onMouseLeave={() => {
+          setHover(false)
+        }}
+        className={styles['add-task']}
+      >
+        {hover ? (
+          <AddCircleOutlined sx={{ color: '#a71717' }} />
+        ) : (
+          <Add sx={{ color: '#a71717' }} />
+        )}
 
-      <span>Add task</span>
+        <span>Add task</span>
+      </div>
     </div>
   )
 }

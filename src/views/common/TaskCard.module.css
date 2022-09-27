@@ -1,14 +1,25 @@
 .task-card {
   display: grid;
+  grid-template-columns: 24px 1fr;
+  padding-top: 8px;
+}
+.task-body {
+  position: relative;
+  display: grid;
   grid-template-rows: min-content min-content min-content;
-  grid-template-columns: 24px 100%;
-  column-gap: 8px;
+  grid-template-columns: 24px 1fr;
   row-gap: 2px;
 
-  padding: 8px;
   min-height: 24px;
-  width: 100%;
   border-bottom: 1px solid var(--tasks-delimiter-color);
+}
+
+.task-edit-menu {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
 }
 
 .title {
@@ -21,6 +32,7 @@
 .checkbox-container {
   align-self: baseline;
   word-break: break-all;
+  grid-column-start: 1;
 }
 
 .description {

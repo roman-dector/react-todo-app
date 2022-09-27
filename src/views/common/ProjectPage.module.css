@@ -1,14 +1,24 @@
-.project-page {
+.page-header-container {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  grid-template-columns: 24px 1fr;
 }
-
 .page-header {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid var(--tasks-delimiter-color);
+
+  grid-column-start: 2;
 }
 
 .page-title {
   font-weight: 800;
   font-size: 19px;
-  margin: 10px;
+  margin: 10px 0 10px 0;
+}
+
+.display-menu {
+  display: flex;
+  gap: 10px;
+  height: fit-content;
 }

@@ -3,6 +3,8 @@ import styles from './ProjectPage.module.css'
 import { FC } from 'react'
 import { TaskType } from '../../dal/apiDataTypes'
 
+import { TuneIcon, MoreHorizIcon } from './Icons'
+
 import { TaskCard } from './TaskCard'
 import { AddTask } from './AddTask'
 
@@ -13,7 +15,7 @@ type ProjectPagePropsType = {
 
 export const ProjectPage: FC<ProjectPagePropsType> = props => {
   return (
-    <div className={styles['project-page']}>
+    <div>
       <PageHeader title={props.title} />
       <TasksList tasks={props.tasks} />
       <AddTask />
@@ -33,9 +35,11 @@ const TasksList: FC<{ tasks: TaskType[] }> = props => {
 
 const PageHeader: FC<{ title: string }> = props => {
   return (
-    <div className={styles['page-header']}>
-      <PageTitle value={props.title} />
-      <DisplayMenu />
+    <div className={styles['page-header-container']}>
+      <div className={styles['page-header']}>
+        <PageTitle value={props.title} />
+        <DisplayMenu />
+      </div>
     </div>
   )
 }
@@ -45,5 +49,10 @@ const PageTitle: FC<{ value: string }> = props => {
 }
 
 const DisplayMenu: FC<{}> = props => {
-  return <div></div>
+  return (
+    <div className={styles['display-menu']}>
+      <TuneIcon />
+      <MoreHorizIcon />
+    </div>
+  )
 }

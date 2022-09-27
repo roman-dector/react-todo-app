@@ -53,3 +53,17 @@ WithLabels.args = {
     { id: 6, name: 'Waiting', color: '#add8e6' },
   ],
 }
+
+export const FullFilled = Template.bind({})
+FullFilled.args = {
+  description:
+    'Some veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery veeeeeeeeeeeeeeery long descriprion here',
+  labels: [
+    { id: 1, name: 'ToDo', color: 'green' },
+    { id: 2, name: 'Calendar', color: 'purple' },
+    { id: 3, name: 'Waiting', color: '#add8e6' },
+    { id: 4, name: 'ToDo', color: 'green' },
+    { id: 5, name: 'Calendar', color: 'purple' },
+    { id: 6, name: 'Waiting', color: '#add8e6' },
+  ],
+}
