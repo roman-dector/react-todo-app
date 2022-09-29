@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { TaskForm } from './TaskForm'
 
 export default {
-  title: 'Example/ProjectPage',
+  title: 'Example/TaskForm',
   component: TaskForm,
   argTypes: {},
 } as ComponentMeta<typeof TaskForm>
