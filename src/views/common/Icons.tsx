@@ -43,21 +43,25 @@ export const TagIcon: FC<IconPropsType> = ({
   size = 'small',
   ...args
 }) => (
-  <SellOutlined
-    sx={{
-      ...args,
-      fontSize: size === 'big' ? '20px' : '12px',
-      fontWeight: 600,
-      transform: 'scale(-1, 1) rotate(-5deg)',
-    }}
-  />
+  <div className={styles['icon-background'] + ' ' + styles['icon']}>
+    <SellOutlined
+      sx={{
+        ...args,
+        fontSize: size === 'big' ? '20px' : '12px',
+        fontWeight: 600,
+        transform: 'scale(-1, 1) rotate(-5deg)',
+      }}
+    />
+  </div>
 )
 
 export const FlagIcon: FC<IconPropsType> = ({
   size = 'small',
   ...args
 }) => (
-  <FlagRounded
-    sx={{ ...args, fontSize: size === 'big' ? '20px' : '12px' }}
-  />
+  <div className={styles['icon-background'] + ' ' + styles['icon']}>
+    <FlagRounded
+      sx={{ ...args, fontSize: size === 'big' ? '20px' : '12px' }}
+    />
+  </div>
 )

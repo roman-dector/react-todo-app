@@ -9,6 +9,8 @@ import {
   CircleOutlined,
 } from '@mui/icons-material'
 
+import { getPriorityColor } from './utils'
+
 import { EditIcon, MoreHorizIcon, DragPoinIcon } from './Icons'
 
 import { TaskPrioritiesType } from '../../dal/apiDataTypes'
@@ -71,21 +73,7 @@ const TaskCheckbox: FC<{
 }> = props => {
   const [checked, setChecked] = useState<boolean>(false)
 
-  let checkboxColor
-  switch (props.priority) {
-    case 2:
-      checkboxColor = 'blue'
-      break
-    case 3:
-      checkboxColor = 'orange'
-      break
-    case 4:
-      checkboxColor = 'red'
-      break
-    default:
-      checkboxColor = '#808080'
-      break
-  }
+  let checkboxColor = getPriorityColor(props.priority)
 
   return (
     <Checkbox

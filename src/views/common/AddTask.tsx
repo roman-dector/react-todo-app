@@ -19,9 +19,11 @@ export const AddTask: FC<{}> = props => {
         className={styles['add-task']}
       >
         {hover ? (
-          <AddCircleOutlined sx={{ color: '#a71717' }} />
+          <AddCircleOutlined
+            sx={{ color: 'var(--accent-red-color)' }}
+          />
         ) : (
-          <Add sx={{ color: '#a71717' }} />
+          <Add sx={{ color: 'var(--accent-red-color)' }} />
         )}
 
         <span>Add task</span>

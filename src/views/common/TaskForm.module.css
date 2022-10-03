@@ -24,6 +24,17 @@
 }
 
 .labels-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.label-item {
+  display: inline-block;
+  padding: 5px;
+  background-color: var(--accent-red-color);
+  border-radius: 4px;
+  color: white;
 }
 
 .flex-end {
@@ -36,10 +47,19 @@
   margin-top: 10px;
 }
 
+.save-button {
+  background-color: var(--accent-red-color);
+  color: white;
+}
+
 .custom-button {
   font-size: 14px;
   font-weight: 800;
   width: 68px;
   height: 32px;
   border-radius: 5px;
+}
+
+.custom-button:hover {
+  filter: brightness(95%);
 }

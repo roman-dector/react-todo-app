@@ -16,5 +16,5 @@
 }
 
 .add-task:hover span {
-  color: #a71717;
+  color: var(--accent-red-color);
 }

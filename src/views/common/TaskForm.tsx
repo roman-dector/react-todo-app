@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 
 import { TaskType } from '../../dal/apiDataTypes'
 import { TagIcon, FlagIcon } from './Icons'
+import { getPriorityColor } from './utils'
 
 export const TaskForm: FC<TaskType | undefined> = props => {
   const { register, handleSubmit } = useForm({
@@ -53,11 +54,16 @@ export const TaskForm: FC<TaskType | undefined> = props => {
         />
         <div className={styles['labels-list']}>
           {props.labels &&
-            props.labels.map(l => <span key={l.id}>{l.name}</span>)}
+            props.labels.map(l => (
+              <LabelItem key={l.id} name={l.name} />
+            ))}
         </div>
         <div className={styles['flex-end']}>
-          <TagIcon color={'gray'} size={'big'} />
-          <FlagIcon color={'gray'} size={'big'} />
+          <TagIcon size={'big'} />
+          <FlagIcon
+            color={getPriorityColor(props.priority)}
+            size={'big'}
+          />
         </div>
       </div>
       <div
@@ -66,10 +72,18 @@ export const TaskForm: FC<TaskType | undefined> = props => {
         }
       >
         <Button type={'button'} value={'Cancel'} />
-        <Button type={'submit'} value={'Save'} />
+        <Button
+          className={styles['save-button']}
+          type={'submit'}
+          value={'Save'}
+        />
       </div>
     </form>
   )
+}
+
+const LabelItem: FC<{ name: string }> = props => {
+  return <div className={styles['label-item']}>{props.name}</div>
 }
 
 const Button: FC<{
@@ -79,9 +93,7 @@ const Button: FC<{
 }> = props => {
   return (
     <input
-      className={
-        styles['custom-button'] + ' ' + styles[props.className]
-      }
+      className={styles['custom-button'] + ' ' + props.className}
       type={props.type || 'button'}
       value={props.value}
     />
