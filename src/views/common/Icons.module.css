@@ -11,3 +11,11 @@
 .icon-background:hover {
   background-color: #cbcbcb;
 }
+
+.icon {
+  color: var(--icons-color);
+}
+
+.icon:hover {
+  color: black;
+}

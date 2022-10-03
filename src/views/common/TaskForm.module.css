@@ -1,4 +1,4 @@
-.task-form {
+.task-form-body {
   display: flex;
   flex-flow: column;
   gap: 10px;
@@ -24,4 +24,22 @@
 }
 
 .labels-list {
+}
+
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.bottom-buttons {
+  margin-top: 10px;
+}
+
+.custom-button {
+  font-size: 14px;
+  font-weight: 800;
+  width: 68px;
+  height: 32px;
+  border-radius: 5px;
 }

@@ -4,6 +4,7 @@ import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { TaskType } from '../../dal/apiDataTypes'
+import { TagIcon, FlagIcon } from './Icons'
 
 export const TaskForm: FC<TaskType | undefined> = props => {
   const { register, handleSubmit } = useForm({
@@ -34,25 +35,55 @@ export const TaskForm: FC<TaskType | undefined> = props => {
       calcHeight(e.currentTarget.value) + 'px'
   }
   return (
-    <form className={styles['task-form']}>
-      <input
-        className={styles['transparent'] + ' ' + styles['title']}
-        {...register('title')}
-        placeholder={'Task name'}
-      />
-      <textarea
+    <form>
+      <div className={styles['task-form-body']}>
+        <input
+          className={styles['transparent'] + ' ' + styles['title']}
+          {...register('title')}
+          placeholder={'Task name'}
+        />
+        <textarea
+          className={
+            styles['transparent'] + ' ' + styles['description']
+          }
+          {...register('description')}
+          rows={1}
+          placeholder={'Description'}
+          onInput={onTextAreaInput}
+        />
+        <div className={styles['labels-list']}>
+          {props.labels &&
+            props.labels.map(l => <span key={l.id}>{l.name}</span>)}
+        </div>
+        <div className={styles['flex-end']}>
+          <TagIcon color={'gray'} size={'big'} />
+          <FlagIcon color={'gray'} size={'big'} />
+        </div>
+      </div>
+      <div
         className={
-          styles['transparent'] + ' ' + styles['description']
+          styles['bottom-buttons'] + ' ' + styles['flex-end']
         }
-        {...register('description')}
-        rows={1}
-        placeholder={'Description'}
-        onInput={onTextAreaInput}
-      />
-      <select {...register('priority')}></select>
-      <div className={styles['labels-list']}></div>
-      <input type={'button'} value={'Cancel'} />
-      <input type={'submit'} />
+      >
+        <Button type={'button'} value={'Cancel'} />
+        <Button type={'submit'} value={'Save'} />
+      </div>
     </form>
+  )
+}
+
+const Button: FC<{
+  type?: string
+  value?: string
+  className?: string
+}> = props => {
+  return (
+    <input
+      className={
+        styles['custom-button'] + ' ' + styles[props.className]
+      }
+      type={props.type || 'button'}
+      value={props.value}
+    />
   )
 }
