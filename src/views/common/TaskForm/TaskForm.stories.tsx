@@ -1,4 +1,4 @@
-import '../../index.css'
+import '../../../index.css'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { TaskForm } from './TaskForm'

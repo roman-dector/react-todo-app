@@ -3,19 +3,14 @@ import { FC, useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 
-import { TaskType } from '../../dal/apiDataTypes'
-import { TagIcon, FlagIcon } from './Icons'
-import { getPriorityColor } from './utils'
+import { TaskType } from '../../../dal/apiDataTypes'
+import { TagIcon } from '../Icons'
+import { PriorityFlag } from './PriorityFlag'
 
 export const TaskForm: FC<TaskType | undefined> = props => {
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      title: props?.title,
-      description: props?.description,
-      priority: props?.priority,
-      labels: props?.labels,
-    },
-  })
+  const [priority, setPriority] = useState<1 | 2 | 3 | 4>(
+    props.priority
+  )
 
   const onTextAreaInput = (
     e: React.FormEvent<HTMLTextAreaElement>
@@ -40,14 +35,12 @@ export const TaskForm: FC<TaskType | undefined> = props => {
       <div className={styles['task-form-body']}>
         <input
           className={styles['transparent'] + ' ' + styles['title']}
-          {...register('title')}
           placeholder={'Task name'}
         />
         <textarea
           className={
             styles['transparent'] + ' ' + styles['description']
           }
-          {...register('description')}
           rows={1}
           placeholder={'Description'}
           onInput={onTextAreaInput}
@@ -60,9 +53,9 @@ export const TaskForm: FC<TaskType | undefined> = props => {
         </div>
         <div className={styles['flex-end']}>
           <TagIcon size={'big'} />
-          <FlagIcon
-            color={getPriorityColor(props.priority)}
-            size={'big'}
+          <PriorityFlag
+            priority={priority}
+            setPriority={setPriority}
           />
         </div>
       </div>
