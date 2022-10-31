@@ -1,0 +1,8 @@
+.side-bar {
+  display: flex;
+  flex-flow: column;
+  gap: 30px;
+
+  height: 500px;
+  padding: 0 16px 0 16px;
+}

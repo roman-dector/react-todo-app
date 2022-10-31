@@ -1,0 +1,22 @@
+.icon-background {
+  padding: 1px;
+  height: 21px;
+  width: 21px;
+
+  border-radius: 3px;
+  &:hover {
+    background-color: var(--icons-background);
+  }
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--icons-color);
+
+  &:hover {
+    color: black;
+  }
+}

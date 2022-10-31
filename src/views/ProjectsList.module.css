@@ -1,0 +1,17 @@
+.head {
+  display: flex;
+  justify-content: space-between;
+
+  height: 28px;
+  padding: 4px 0 4px 4px;
+}
+
+.head span {
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

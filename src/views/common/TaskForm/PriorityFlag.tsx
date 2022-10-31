@@ -22,21 +22,38 @@ export const PriorityFlag: FC<{
         <FlagIcon
           color={getPriorityColor(props.priority)}
           size={'big'}
+          background={true}
         />
       </div>
       <div style={active ? {} : { display: 'none' }}>
         <div className={styles['popup']}>
-          <span onClick={() => onClickFlagPriority(1)}>
+          <span
+            className={styles['popup-item']}
+            onClick={() => onClickFlagPriority(1)}
+          >
             <FlagIcon color={getPriorityColor(1)} size={'big'} />
+            Priority 1
           </span>
-          <span onClick={() => onClickFlagPriority(2)}>
+          <span
+            className={styles['popup-item']}
+            onClick={() => onClickFlagPriority(2)}
+          >
             <FlagIcon color={getPriorityColor(2)} size={'big'} />
+            Priority 2
           </span>
-          <span onClick={() => onClickFlagPriority(3)}>
+          <span
+            className={styles['popup-item']}
+            onClick={() => onClickFlagPriority(3)}
+          >
             <FlagIcon color={getPriorityColor(3)} size={'big'} />
+            Priority 3
           </span>
-          <span onClick={() => onClickFlagPriority(4)}>
+          <span
+            className={styles['popup-item']}
+            onClick={() => onClickFlagPriority(4)}
+          >
             <FlagIcon color={getPriorityColor(4)} size={'big'} />
+            Priority 4
           </span>
         </div>
       </div>

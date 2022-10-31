@@ -52,7 +52,7 @@ export const TaskForm: FC<TaskType | undefined> = props => {
             ))}
         </div>
         <div className={styles['flex-end']}>
-          <TagIcon size={'big'} />
+          <TagIcon size={'big'} background={true} />
           <PriorityFlag
             priority={priority}
             setPriority={setPriority}

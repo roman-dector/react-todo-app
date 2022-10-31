@@ -5,8 +5,27 @@
 .popup {
   position: absolute;
 
-  background-color: rebeccapurple;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  background-color: var(--popups-bg-color);
+  border-radius: 4px;
   width: 128px;
   right: -53px;
   top: auto;
+  overflow: hidden;
+}
+
+.popup-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.popup-item:hover {
+  background-color: #8080807b;
 }

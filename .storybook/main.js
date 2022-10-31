@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     'storybook-css-modules',
+    '@storybook/preset-scss',
     {
       name: '@storybook/addon-postcss',
       options: {

@@ -97,5 +97,7 @@ body {
 html {
   --tasks-delimiter-color: #808080;
   --icons-color: #808080;
+  --icons-background: #cbcbcb;
   --accent-red-color: #c82020;
+  --popups-bg-color: #efefef;
 }

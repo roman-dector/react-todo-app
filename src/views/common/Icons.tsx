@@ -1,4 +1,4 @@
-import styles from './Icons.module.css'
+import styles from './Icons.module.scss'
 
 import {
   Edit,
@@ -7,43 +7,70 @@ import {
   DragIndicator,
   SellOutlined,
   FlagRounded,
+  Add,
+  ExpandMore,
+  ChevronLeft,
 } from '@mui/icons-material'
 import { FC } from 'react'
 
-export const EditIcon = () => (
-  <div className={styles['icon-background'] + ' ' + styles['icon']}>
-    <Edit />
-  </div>
-)
+type optionsType = {
+  bg: boolean
+}
 
-export const MoreHorizIcon = () => (
-  <div className={styles['icon-background'] + ' ' + styles['icon']}>
-    <MoreHoriz />
-  </div>
-)
+export const withIconStyle = (
+  Component: FC,
+  options: optionsType = { bg: true }
+) => {
+  const Icon = (props: any) => (
+    <div
+      className={
+        (options.bg && styles['icon-background']) +
+        ' ' +
+        styles['icon']
+      }
+    >
+      <Component {...props} />
+    </div>
+  )
 
-export const TuneIcon = () => (
-  <div className={styles['icon-background'] + ' ' + styles['icon']}>
-    <Tune />
-  </div>
-)
+  return Icon
+}
 
-export const DragPoinIcon = () => (
-  <div className={styles['icon-background'] + ' ' + styles['icon']}>
-    <DragIndicator />
-  </div>
-)
+export const EditIcon = withIconStyle(Edit)
+
+export const MoreHorizIcon = withIconStyle(MoreHoriz)
+export const MoreHorizWithoutBg = withIconStyle(MoreHoriz, {
+  bg: false,
+})
+
+export const TuneIcon = withIconStyle(Tune)
+
+export const DragPoinIcon = withIconStyle(DragIndicator)
+
+export const AddButtonIcon = withIconStyle(Add)
+
+export const ArrowBackIcon = withIconStyle(ChevronLeft)
+
+export const ArrowDownIcon = withIconStyle(ExpandMore)
 
 type IconPropsType = {
   color?: string
   size: 'small' | 'big'
+  background?: boolean
 }
 
 export const TagIcon: FC<IconPropsType> = ({
   size = 'small',
+  background = false,
   ...args
 }) => (
-  <div className={styles['icon-background'] + ' ' + styles['icon']}>
+  <div
+    className={
+      background
+        ? styles['icon-background']
+        : '' + ' ' + styles['icon']
+    }
+  >
     <SellOutlined
       sx={{
         ...args,
@@ -57,9 +84,16 @@ export const TagIcon: FC<IconPropsType> = ({
 
 export const FlagIcon: FC<IconPropsType> = ({
   size = 'small',
+  background = false,
   ...args
 }) => (
-  <div className={styles['icon-background'] + ' ' + styles['icon']}>
+  <div
+    className={
+      background
+        ? styles['icon-background']
+        : '' + ' ' + styles['icon']
+    }
+  >
     <FlagRounded
       sx={{ ...args, fontSize: size === 'big' ? '20px' : '12px' }}
     />
