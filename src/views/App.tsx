@@ -9,7 +9,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { purple } from '@mui/material/colors'
 
 import { Inbox } from './Inbox'
-import { Header } from './Header'
+import { Header } from './Header/Header'
 import { NotFound } from './NotFound'
 
 const theme = createTheme({

@@ -98,6 +98,8 @@ html {
   --tasks-delimiter-color: #808080;
   --icons-color: #808080;
   --icons-background: #cbcbcb;
-  --accent-red-color: #c82020;
+  --font-color-light: #fdfdfd;
+  /* --accent-red-color: #c82020; */
+  --accent-red-color: #db4c3f;
   --popups-bg-color: #efefef;
 }

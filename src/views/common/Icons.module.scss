@@ -1,21 +1,21 @@
 .icon-background {
   padding: 1px;
-  height: 21px;
-  width: 21px;
-
+  min-height: 21px;
+  min-width: 21px;
   border-radius: 3px;
-  &:hover {
-    background-color: var(--icons-background);
-  }
 }
 
-.icon {
+.center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
+.icon {
   color: var(--icons-color);
+}
 
+.blink {
   &:hover {
     color: black;
   }

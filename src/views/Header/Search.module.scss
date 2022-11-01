@@ -1,0 +1,32 @@
+$bg-col: #ffffff43;
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  width: 218px;
+  background-color: $bg-col;
+  border-radius: 3px;
+  padding: 2px 5px;
+  color: var(--font-color-light);
+
+  input {
+    background-color: transparent;
+    color: inherit;
+    font-size: 14px;
+
+    &::placeholder {
+      color: var(--font-color-light);
+    }
+  }
+
+  &:hover {
+    background-color: white;
+    color: black;
+
+    input::placeholder {
+      color: grey;
+    }
+  }
+}

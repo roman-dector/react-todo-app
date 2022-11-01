@@ -14,22 +14,47 @@ import {
 import { FC } from 'react'
 
 type optionsType = {
-  bg: boolean
+  bg?: boolean
+  bgColor?: string
+  fontSize?: string
+  blink?: boolean
+  color?: string
+  padding?: string
 }
 
 export const withIconStyle = (
   Component: FC,
-  options: optionsType = { bg: true }
+  options: optionsType = {
+    bg: true,
+    bgColor: 'var(--icons-background)',
+    fontSize: '22px',
+    blink: true,
+    color: 'var(--icons-color)',
+    padding: '0px',
+  }
 ) => {
   const Icon = (props: any) => (
     <div
       className={
+        styles['center'] +
+        ' ' +
         (options.bg && styles['icon-background']) +
         ' ' +
-        styles['icon']
+        (options.blink && styles['blink'])
       }
+      style={{
+        fontSize: options.fontSize,
+        color: options.color,
+        padding: options.padding,
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.backgroundColor = options.bgColor
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.backgroundColor = 'transparent'
+      }}
     >
-      <Component {...props} />
+      <Component {...props} fontSize={'inherit'} color='inherit' />
     </div>
   )
 
@@ -39,6 +64,7 @@ export const withIconStyle = (
 export const EditIcon = withIconStyle(Edit)
 
 export const MoreHorizIcon = withIconStyle(MoreHoriz)
+
 export const MoreHorizWithoutBg = withIconStyle(MoreHoriz, {
   bg: false,
 })
