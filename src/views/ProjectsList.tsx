@@ -41,7 +41,7 @@ const List: FC<{ projects: Array<ProjectType> }> = props => {
           path={`/project/${p.id}`}
           key={p.id}
           title={p.title}
-          color={p.color}
+          color={p.color.value}
           amountOfTasks={p.amountOfTasks}
           editable={true}
         />

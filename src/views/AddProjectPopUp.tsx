@@ -1,33 +1,49 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react'
 import styles from './AddProjectPopUp.module.css'
 
-import { CancelSubmitBar } from './common/Button'
-import { ItemIcon } from './common/ItemIcon'
-
+import { Dispatch, FC, SetStateAction, useState } from 'react'
 import {
   useForm,
   FormProvider,
   SubmitHandler,
   useFormContext,
 } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
-type AddProjectFormDataType = {
-  name: string
-  color: { value: string; name: string }
-}
+import { postNewProjectFx } from '../store/projects'
+import {
+  NewProjectInitialDataType,
+  ColorType,
+} from '../dal/apiDataTypes'
 
-const onSubmitForm: SubmitHandler<AddProjectFormDataType> = data => {}
+import { CancelSubmitBar } from './common/Button'
+import { ItemIcon } from './common/ItemIcon'
+import { FieldErrorMessage } from './common/Errors'
+
+const schema = yup.object({
+  title: yup.string().required(),
+  color: yup.object({
+    value: yup.string().required(),
+    name: yup.string().required(),
+  }),
+})
+
+const onSubmitForm: SubmitHandler<NewProjectInitialDataType> =
+  data => {
+    postNewProjectFx(data)
+  }
 
 export const AddProjectPopUp: FC<{
   closePopUp: () => void
 }> = props => {
   const [colorsVisible, setColorsVisible] = useState(false)
 
-  const formMethods = useForm<AddProjectFormDataType>({
+  const formMethods = useForm<NewProjectInitialDataType>({
     defaultValues: {
-      name: '',
       color: { value: 'gray', name: 'Gray' },
     },
+    mode: 'onSubmit',
+    resolver: yupResolver(schema),
   })
 
   return (
@@ -51,7 +67,7 @@ export const AddProjectPopUp: FC<{
             onCanselHandler={props.closePopUp}
             onSubmitHandler={() => {
               formMethods.handleSubmit(onSubmitForm)()
-              props.closePopUp()
+              formMethods.formState.isValid && props.closePopUp()
             }}
           />
         </div>
@@ -64,13 +80,20 @@ const AddProjectForm: FC<{
   colorsVisible: boolean
   setColorsVisible: Dispatch<SetStateAction<boolean>>
 }> = props => {
-  const { register } = useFormContext()
+  const {
+    register,
+    formState: { errors, touchedFields },
+  } = useFormContext<NewProjectInitialDataType>()
 
   return (
     <form className={styles['form']}>
       <div>
         <label>Name</label>
-        <input {...register('name')} />
+        <input {...register('title')} />
+        <FieldErrorMessage
+          error={errors['title']}
+          touched={touchedFields['title']}
+        />
       </div>
 
       <div>
@@ -88,6 +111,8 @@ const ColorSelect: FC<{
   colorsVisible: boolean
   setColorsVisible: Dispatch<SetStateAction<boolean>>
 }> = props => {
+  const { setValue } = useFormContext<NewProjectInitialDataType>()
+
   const [selectedColor, selectColor] = useState({
     value: 'gray',
     name: 'Gray',
@@ -103,14 +128,26 @@ const ColorSelect: FC<{
     { value: 'gray', name: 'Gray' },
   ]
 
+  const onColorItemClickCreator =
+    (color: ColorType, selected: boolean) =>
+    (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+      e.stopPropagation()
+      if (!selected) {
+        selectColor(color)
+        setValue('color', color)
+      }
+      props.setColorsVisible(!props.colorsVisible)
+    }
+
   return (
     <div>
       <div className={styles['selected-color']}>
         <ColorItem
           {...selectedColor}
-          colorsVisible={props.colorsVisible}
-          selectColor={selectColor}
-          setColorsVisible={props.setColorsVisible}
+          onClickHandler={onColorItemClickCreator(
+            selectedColor,
+            true
+          )}
         />
       </div>
 
@@ -121,9 +158,7 @@ const ColorSelect: FC<{
               <ColorItem
                 {...color}
                 key={color.value}
-                colorsVisible={props.colorsVisible}
-                selectColor={selectColor}
-                setColorsVisible={props.setColorsVisible}
+                onClickHandler={onColorItemClickCreator(color, false)}
               />
             </div>
           ))}
@@ -136,25 +171,11 @@ const ColorSelect: FC<{
 const ColorItem: FC<{
   value: string
   name: string
-  colorsVisible: boolean
-  selectColor?: Dispatch<
-    SetStateAction<{
-      value: string
-      name: string
-    }>
-  >
-  setColorsVisible: Dispatch<SetStateAction<boolean>>
+  onClickHandler?: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => void
 }> = props => (
-  <div
-    className={styles['color']}
-    onClick={e => {
-      e.stopPropagation()
-      if (!!props.selectColor) {
-        props.selectColor({ name: props.name, value: props.value })
-      }
-      props.setColorsVisible(!props.colorsVisible)
-    }}
-  >
+  <div className={styles['color']} onClick={props.onClickHandler}>
     <ItemIcon color={props.value} />
     <span style={{ display: 'inline-blok', marginTop: '2px' }}>
       {props.name}

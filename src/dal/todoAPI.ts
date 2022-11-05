@@ -1,5 +1,9 @@
 import localforage from 'localforage'
-import { TaskType, ProjectType } from './apiDataTypes'
+import {
+  TaskType,
+  ProjectType,
+  NewProjectInitialDataType,
+} from './apiDataTypes'
 
 export const taskAPI = {
   getTasks: async (projectId: number) => {
@@ -35,16 +39,28 @@ export const taskAPI = {
 
 export const projectAPI = {
   getProjects: async () => {
-    return await localforage.getItem<ProjectType[]>('projects')
+    return (
+      (await localforage.getItem<ProjectType[]>('projects')) || []
+    )
   },
 
-  addProject: async (project: ProjectType) => {
-    let projects = await localforage.getItem<ProjectType[]>(
-      'projects'
-    )
+  addProject: async (
+    initialProjectData: NewProjectInitialDataType
+  ) => {
+    let projects =
+      (await localforage.getItem<ProjectType[]>('projects')) || []
+
+    let newProject = {
+      id: Date.now(),
+      title: initialProjectData.title,
+      color: initialProjectData.color,
+      isArchived: false,
+      amountOfTasks: 0,
+    }
+
     return await localforage.setItem('projects', [
       ...projects,
-      project,
+      newProject,
     ])
   },
 

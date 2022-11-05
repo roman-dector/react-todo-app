@@ -8,6 +8,8 @@ type onClickHandlerType = (
 export const CancelSubmitBar: FC<{
   onCanselHandler?: onClickHandlerType
   onSubmitHandler?: onClickHandlerType
+  disableSubmit?: boolean
+  disableCansel?: boolean
 }> = props => (
   <div
     className={styles['bottom-buttons'] + ' ' + styles['flex-end']}
@@ -15,11 +17,13 @@ export const CancelSubmitBar: FC<{
     <Button
       type={'button'}
       value={'Cancel'}
+      disabled={props.disableCansel}
       onClickHandler={props.onCanselHandler}
     />
     <Button
       type={'submit'}
       value={'Save'}
+      disabled={props.disableSubmit}
       onClickHandler={props.onSubmitHandler}
     />
   </div>
@@ -28,6 +32,7 @@ export const CancelSubmitBar: FC<{
 export const Button: FC<{
   type?: string
   value?: string
+  disabled?: boolean
   className?: string
   onClickHandler?: onClickHandlerType
 }> = props => {
@@ -38,6 +43,7 @@ export const Button: FC<{
         ' ' +
         (props.type === 'submit' && styles['submit-button'])
       }
+      disabled={props.disabled}
       type={props.type || 'button'}
       value={props.value}
       onClick={props.onClickHandler}

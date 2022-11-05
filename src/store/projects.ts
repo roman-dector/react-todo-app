@@ -4,34 +4,36 @@ import {
   createEffect,
 } from 'effector-logger'
 
-import { ProjectType } from '../dal/apiDataTypes'
+import {
+  ProjectType,
+  NewProjectInitialDataType,
+} from '../dal/apiDataTypes'
 import { projectAPI } from '../dal/todoAPI'
 
 export const newProjectCreated = createEvent()
 
 export const getProjectsFx = createEffect<void, ProjectType[], Error>(
   async () => {
-    await projectAPI.getProjects()
-    console.log($projects.getState())
-    return [
-      {
-        id: 12,
-        title: 'Project',
-        color: 'red',
-        description: null,
-        isArchived: false,
-        amountOfTasks: 4,
-      },
-    ]
+    return await projectAPI.getProjects()
+    // return [
+    //   {
+    //     id: 12,
+    //     title: 'Project',
+    //     color: { value: 'red', name: 'Red' },
+    //     description: null,
+    //     isArchived: false,
+    //     amountOfTasks: 4,
+    //   },
+    // ]
   }
 )
 
 export const postNewProjectFx = createEffect<
-  ProjectType,
+  NewProjectInitialDataType,
   ProjectType[],
   Error
->(async project => {
-  return await projectAPI.addProject(project)
+>(async initialProjectData => {
+  return await projectAPI.addProject(initialProjectData)
 })
 
 export const $projects = createStore<ProjectType[]>([])
