@@ -1,23 +1,58 @@
 import styles from './ProjectPage.module.css'
 
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { TaskType } from '../../dal/apiDataTypes'
 
 import { TuneIcon, MoreHorizIcon } from './Icons'
 
 import { TaskCard } from './TaskCard'
 import { AddTask } from './AddTask'
+import { useParams } from 'react-router-dom'
 
-type ProjectPagePropsType = {
-  title: string
-  tasks: TaskType[]
-}
+import { projectAPI, taskAPI } from '../../dal/todoAPI'
 
-export const ProjectPage: FC<ProjectPagePropsType> = props => {
+export const ProjectPage: FC = props => {
+  let title: string
+  let tasks: TaskType[] = []
+
+  const { mainFilter, projectId } = useParams()
+
+  useEffect(() => {
+    if (!!projectId) {
+      projectAPI.getProjectById(Number(projectId)).then(p => {
+        title = p.title
+      })
+    }
+
+    taskAPI.getTasks(Number(projectId)).then(tasks => {
+      tasks = tasks
+    })
+  }, [projectId])
+
+  if (!!mainFilter) {
+    switch (mainFilter) {
+      case 'inbox':
+        title = 'Inbox'
+        break
+      case 'today':
+        title = 'Today'
+        break
+      case 'upcoming':
+        title = 'Upcoming'
+        break
+      case 'filters-labels':
+        title = 'Filters&Labels'
+        break
+      case 'completed':
+        title = 'Completed'
+        break
+    }
+  }
+
   return (
-    <div>
-      <PageHeader title={props.title} />
-      <TasksList tasks={props.tasks} />
+    <div className={styles['project-page']} style={{ width: '100%' }}>
+      <PageHeader title={title} />
+      <TasksList tasks={tasks} />
       <AddTask />
     </div>
   )

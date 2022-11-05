@@ -1,6 +1,7 @@
 import styles from './ProjectsList.module.css'
 
 import { Dispatch, FC, SetStateAction, useState } from 'react'
+import { createPortal } from 'react-dom'
 
 import {
   AddButtonIcon,
@@ -9,6 +10,7 @@ import {
 } from './common/Icons'
 import { ProjectType } from '../dal/apiDataTypes'
 import { SideBarItem } from './common/SideBarItem'
+import { AddProjectPopUp } from './AddProjectPopUp'
 
 type ProjectsListPropsType = {
   projects: ProjectType[]
@@ -36,6 +38,7 @@ const List: FC<{ projects: Array<ProjectType> }> = props => {
     <div>
       {props.projects.map(p => (
         <SideBarItem
+          path={`/project/${p.id}`}
           key={p.id}
           title={p.title}
           color={p.color}
@@ -53,9 +56,26 @@ type ControlsPropsType = {
 }
 
 const Controls: FC<ControlsPropsType> = props => {
+  const [popupActive, setPopupActive] = useState(false)
+
   return (
     <div className={styles['controls']}>
-      <AddButtonIcon />
+      <div
+        onClick={() => {
+          setPopupActive(true)
+        }}
+      >
+        <AddButtonIcon />
+        {popupActive &&
+          createPortal(
+            <AddProjectPopUp
+              closePopUp={() => {
+                setPopupActive(false)
+              }}
+            />,
+            document.getElementById('root')
+          )}
+      </div>
       <div
         onClick={() => {
           props.setIsExpanded(!props.isExpanded)

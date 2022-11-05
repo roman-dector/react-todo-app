@@ -1,3 +1,6 @@
+import styles from './App.module.css'
+
+import { useEffect } from 'react'
 import {
   HashRouter as Router,
   Routes,
@@ -5,43 +8,42 @@ import {
   Navigate,
 } from 'react-router-dom'
 
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { purple } from '@mui/material/colors'
+import { useStore } from 'effector-react'
+import { $appStatus, initializeAppFx } from '../store/app'
 
-import { Inbox } from './Inbox'
 import { Header } from './Header/Header'
-import { NotFound } from './NotFound'
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: purple[500],
-    },
-    secondary: {
-      main: '#f44336',
-    },
-  },
-})
+import { SideBar } from './SideBar'
+import { ProjectPage } from './common/ProjectPage'
 
 export const App = () => {
-  return (
-    <ThemeProvider theme={theme}>
-      <div>
-        <Header />
+  const appStatus = useStore($appStatus)
 
-        <Router>
+  useEffect(() => {
+    initializeAppFx()
+  }, [])
+
+  if (!appStatus) return <div />
+
+  return (
+    <Router>
+      <div className={styles['app']}>
+        <Header />
+        <div className={styles['app-body']}>
+          <SideBar width={400} />
+
           <Routes>
             <Route
-              path='/'
-              element={<Navigate replace to='/inbox' />}
+              path={'/'}
+              element={<Navigate replace to={'/inbox'} />}
             />
 
-            <Route path='/inbox' element={<Inbox />} />
-
-            <Route path='*' element={<NotFound />} />
+            <Route path={'/:mainFilter'} element={<ProjectPage />} />
+            <Route path={'/project'}>
+              <Route path={':projectId'} element={<ProjectPage />} />
+            </Route>
           </Routes>
-        </Router>
+        </div>
       </div>
-    </ThemeProvider>
+    </Router>
   )
 }

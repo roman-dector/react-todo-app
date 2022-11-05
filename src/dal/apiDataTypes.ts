@@ -23,7 +23,6 @@ export type ProjectType = {
   id: number
   title: string
   color: string
-  description: string | null
   isArchived: boolean
   amountOfTasks: number
 }

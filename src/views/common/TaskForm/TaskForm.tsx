@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { TaskType } from '../../../dal/apiDataTypes'
 import { TagIcon } from '../Icons'
 import { PriorityFlag } from './PriorityFlag'
+import { Button, CancelSubmitBar } from '../Button'
 
 export const TaskForm: FC<TaskType | undefined> = props => {
   const [priority, setPriority] = useState<1 | 2 | 3 | 4>(
@@ -58,18 +59,9 @@ export const TaskForm: FC<TaskType | undefined> = props => {
             setPriority={setPriority}
           />
         </div>
-      </div>
-      <div
-        className={
-          styles['bottom-buttons'] + ' ' + styles['flex-end']
-        }
-      >
-        <Button type={'button'} value={'Cancel'} />
-        <Button
-          className={styles['save-button']}
-          type={'submit'}
-          value={'Save'}
-        />
+        <div className={styles['footer']}>
+          <CancelSubmitBar />
+        </div>
       </div>
     </form>
   )
@@ -77,18 +69,4 @@ export const TaskForm: FC<TaskType | undefined> = props => {
 
 const LabelItem: FC<{ name: string }> = props => {
   return <div className={styles['label-item']}>{props.name}</div>
-}
-
-const Button: FC<{
-  type?: string
-  value?: string
-  className?: string
-}> = props => {
-  return (
-    <input
-      className={styles['custom-button'] + ' ' + props.className}
-      type={props.type || 'button'}
-      value={props.value}
-    />
-  )
 }

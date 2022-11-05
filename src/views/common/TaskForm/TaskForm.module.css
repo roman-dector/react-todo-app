@@ -37,30 +37,6 @@
   color: white;
 }
 
-.flex-end {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.bottom-buttons {
-  margin-top: 10px;
-}
-
-.save-button {
-  background-color: var(--accent-red-color);
-  color: white;
-}
-
-.custom-button {
-  font-size: 14px;
-  font-weight: 800;
-  width: 68px;
-  height: 32px;
-  border-radius: 5px;
-}
-
-.custom-button:hover {
-  filter: brightness(90%);
-  cursor: pointer;
+.footer {
+  padding: 10px 0 0 0;
 }

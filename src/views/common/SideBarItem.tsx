@@ -3,14 +3,11 @@ import styles from './SideBarItem.module.css'
 import { MoreHorizWithoutBg } from './Icons'
 
 import { FC, ReactElement, useState } from 'react'
-import { OverridableComponent } from '@mui/material/OverridableComponent'
-import { SvgIconTypeMap } from '@mui/material'
-
-type MUIIconType = OverridableComponent<SvgIconTypeMap<{}, 'svg'>> & {
-  muiName: string
-}
+import { Link } from 'react-router-dom'
+import { ItemIcon } from './ItemIcon'
 
 type SideBarItemPropsType = {
+  path: string
   title: string
   color?: string
   Icon?: () => ReactElement
@@ -26,43 +23,29 @@ export const SideBarItem: FC<SideBarItemPropsType> = props => {
   const [hover, setHover] = useState(false)
 
   return (
-    <div
-      className={styles['side-bar-item']}
-      onMouseOver={() => {
-        setHover(true)
-      }}
-      onMouseLeave={() => {
-        setHover(false)
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <ItemIcon color={color} Icon={props.Icon} />
-        <div className={styles['title']}>{props.title}</div>
+    <Link to={props.path} style={{ textDecoration: 'none' }}>
+      <div
+        className={styles['side-bar-item']}
+        onMouseOver={() => {
+          setHover(true)
+        }}
+        onMouseLeave={() => {
+          setHover(false)
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <ItemIcon color={color} Icon={props.Icon} />
+          <div className={styles['title']}>{props.title}</div>
+        </div>
+        <TasksCounter
+          hover={hover}
+          editable={props.editable}
+          amountOfTasks={props.amountOfTasks}
+        />
       </div>
-      <TasksCounter
-        hover={hover}
-        editable={props.editable}
-        amountOfTasks={props.amountOfTasks}
-      />
-    </div>
+    </Link>
   )
 }
-
-const ItemIcon: FC<{ color: string; Icon: () => ReactElement }> =
-  props => {
-    return (
-      <>
-        {props.Icon ? (
-          props.Icon()
-        ) : (
-          <div
-            className={styles['color-circle']}
-            style={{ backgroundColor: props.color }}
-          />
-        )}
-      </>
-    )
-  }
 
 const TasksCounter: FC<{
   hover: boolean

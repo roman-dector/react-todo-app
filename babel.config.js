@@ -8,5 +8,6 @@ module.exports = {
       },
     ],
     '@babel/preset-typescript',
+    ['effector-logger/babel-plugin', { inspector: true }],
   ],
 }

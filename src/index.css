@@ -99,7 +99,9 @@ html {
   --icons-color: #808080;
   --icons-background: #cbcbcb;
   --font-color-light: #fdfdfd;
+  --font-color-black: black;
   /* --accent-red-color: #c82020; */
   --accent-red-color: #db4c3f;
   --popups-bg-color: #efefef;
+  --main-bg-color: white;
 }

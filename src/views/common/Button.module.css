@@ -1,0 +1,23 @@
+.submit-button {
+  background-color: var(--accent-red-color);
+  color: white;
+}
+
+.custom-button {
+  font-size: 14px;
+  font-weight: 800;
+  width: 68px;
+  height: 32px;
+  border-radius: 5px;
+}
+
+.custom-button:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

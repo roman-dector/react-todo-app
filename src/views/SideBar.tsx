@@ -1,7 +1,6 @@
 import styles from './SideBar.module.css'
 
 import { FC } from 'react'
-import { ProjectType } from '../dal/apiDataTypes'
 import { ProjectsList } from './ProjectsList'
 import { SideBarItem } from './common/SideBarItem'
 
@@ -13,12 +12,16 @@ import {
   TaskAlt,
 } from '@mui/icons-material'
 
+import { $projects } from '../store/projects'
+import { useStore } from 'effector-react'
+
 type SideBarPropsType = {
   width: number
-  projects: ProjectType[]
 }
 
 export const SideBar: FC<SideBarPropsType> = props => {
+  const projects = useStore($projects)
+
   return (
     <div
       className={styles['side-bar']}
@@ -26,18 +29,21 @@ export const SideBar: FC<SideBarPropsType> = props => {
     >
       <div>
         <SideBarItem
+          path={'/inbox'}
           title={'Inbox'}
           Icon={() => <InboxOutlined sx={{ color: 'blue' }} />}
           amountOfTasks={0}
           editable={false}
         />
         <SideBarItem
+          path={'/today'}
           title={'Today'}
           Icon={() => <TodayOutlined sx={{ color: 'green' }} />}
           amountOfTasks={0}
           editable={false}
         />
         <SideBarItem
+          path={'/upcoming'}
           title={'Upcoming'}
           Icon={() => (
             <CalendarMonthOutlined sx={{ color: 'purple' }} />
@@ -46,19 +52,21 @@ export const SideBar: FC<SideBarPropsType> = props => {
           editable={false}
         />
         <SideBarItem
+          path={'/filters-labels'}
           title={'Filters & labels'}
           Icon={() => <GridViewOutlined sx={{ color: 'orange' }} />}
           amountOfTasks={0}
           editable={false}
         />
         <SideBarItem
+          path={'/completed'}
           title={'Completed'}
           Icon={() => <TaskAlt sx={{ color: 'green' }} />}
           amountOfTasks={0}
           editable={false}
         />
       </div>
-      <ProjectsList projects={props.projects} />
+      <ProjectsList projects={projects} />
     </div>
   )
 }
