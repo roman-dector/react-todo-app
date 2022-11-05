@@ -74,10 +74,13 @@ export const projectAPI = {
     return {} as ProjectType
   },
 
-  // deleteProject: async (projectId: number) => {
-  //   let projects = await localforage.getItem<ProjectType[]>(
-  //     'projects'
-  //   )
-  //   await localforage.setItem('projects', [...projects, project])
-  // },
+  deleteProject: async (projectId: number) => {
+    let projects =
+      (await localforage.getItem<ProjectType[]>('projects')) || []
+
+    return await localforage.setItem<ProjectType[]>(
+      'projects',
+      projects.filter(p => p.id !== projectId)
+    )
+  },
 }
