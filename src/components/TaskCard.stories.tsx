@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { TaskCard } from './TaskCard'
 
 export default {
-  title: 'Example/TaskCard',
+  title: 'Common/TaskCard',
   component: TaskCard,
   argTypes: {
     title: {

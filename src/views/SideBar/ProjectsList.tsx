@@ -7,9 +7,9 @@ import {
   AddButtonIcon,
   ArrowBackIcon,
   ArrowDownIcon,
-} from './common/Icons'
-import { ProjectType } from '../dal/apiDataTypes'
-import { SideBarItem } from './common/SideBarItem'
+} from '../../components/Icons'
+import { ProjectType } from '../../dal/apiDataTypes'
+import { SideBarItem } from '../../components/SideBarItem'
 import { AddProjectPopUp } from './AddProjectPopUp'
 
 type ProjectsListPropsType = {

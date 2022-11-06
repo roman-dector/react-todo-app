@@ -1,10 +1,10 @@
-import '../index.css'
+import '../../index.css'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { SideBar } from './SideBar'
 
 export default {
-  title: 'Example/SideBar',
+  title: 'Main/SideBar/SideBar',
   component: SideBar,
   argTypes: {
     width: {

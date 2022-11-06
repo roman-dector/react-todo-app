@@ -3,7 +3,7 @@ import { FC, useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 
-import { TaskType } from '../../../dal/apiDataTypes'
+import { TaskType } from '../../dal/apiDataTypes'
 import { TagIcon } from '../Icons'
 import { PriorityFlag } from './PriorityFlag'
 import { Button, CancelSubmitBar } from '../Button'

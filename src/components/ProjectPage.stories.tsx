@@ -2,7 +2,7 @@ import '../../index.css'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { ProjectPage } from './ProjectPage'
-import { LabelType } from '../../dal/apiDataTypes'
+import { LabelType } from '../dal/apiDataTypes'
 
 const defaultTasks = [
   {
@@ -62,7 +62,7 @@ const defaultTasks = [
 ]
 
 export default {
-  title: 'Example/ProjectPage',
+  title: 'Common/ProjectPage',
   component: ProjectPage,
   argTypes: {
     title: {

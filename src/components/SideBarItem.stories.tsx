@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { SideBarItem } from './SideBarItem'
 
 export default {
-  title: 'Example/SideBarItem',
+  title: 'Common/SideBarItem',
   component: SideBarItem,
   argTypes: {
     title: {

@@ -1,4 +1,4 @@
-import '../index.css'
+import '../../index.css'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { ProjectsList } from './ProjectsList'
@@ -31,7 +31,7 @@ const projectsList = [
 ]
 
 export default {
-  title: 'Example/ProjectsList',
+  title: 'Main/SideBar/ProjectsList',
   component: ProjectsList,
   argTypes: {
     projects: {

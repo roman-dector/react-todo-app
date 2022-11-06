@@ -1,7 +1,7 @@
 import styles from './ProjectPage.module.css'
 
 import { FC, useEffect } from 'react'
-import { TaskType } from '../../dal/apiDataTypes'
+import { TaskType } from '../dal/apiDataTypes'
 
 import { TuneIcon, MoreHorizIcon } from './Icons'
 
@@ -9,7 +9,7 @@ import { TaskCard } from './TaskCard'
 import { AddTask } from './AddTask'
 import { useParams } from 'react-router-dom'
 
-import { projectAPI, taskAPI } from '../../dal/todoAPI'
+import { projectAPI, taskAPI } from '../dal/todoAPI'
 
 export const ProjectPage: FC = props => {
   let title: string

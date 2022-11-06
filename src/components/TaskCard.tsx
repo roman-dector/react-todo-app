@@ -13,9 +13,9 @@ import { getPriorityColor } from './utils'
 
 import { EditIcon, MoreHorizIcon, DragPoinIcon } from './Icons'
 
-import { TaskPrioritiesType } from '../../dal/apiDataTypes'
+import { TaskPrioritiesType } from '../dal/apiDataTypes'
 import { TaskLabel } from './TaskLabel'
-import { TaskType } from '../../dal/apiDataTypes'
+import { TaskType } from '../dal/apiDataTypes'
 
 export const TaskCard: FC<TaskType> = props => {
   const [hover, setHover] = useState(false)

@@ -10,15 +10,15 @@ import {
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-import { postNewProjectFx } from '../store/projects'
+import { postNewProjectFx } from '../../store/projects'
 import {
   NewProjectInitialDataType,
   ColorType,
-} from '../dal/apiDataTypes'
+} from '../../dal/apiDataTypes'
 
-import { CancelSubmitBar } from './common/Button'
-import { ItemIcon } from './common/ItemIcon'
-import { FieldErrorMessage } from './common/Errors'
+import { CancelSubmitBar } from '../../components/Button'
+import { ItemIcon } from '../../components/ItemIcon'
+import { FieldErrorMessage } from '../../components/Errors'
 
 const schema = yup.object({
   title: yup.string().required(),

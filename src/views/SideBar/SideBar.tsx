@@ -2,7 +2,7 @@ import styles from './SideBar.module.css'
 
 import { FC } from 'react'
 import { ProjectsList } from './ProjectsList'
-import { SideBarItem } from './common/SideBarItem'
+import { SideBarItem } from '../../components/SideBarItem'
 
 import {
   InboxOutlined,
@@ -12,7 +12,7 @@ import {
   TaskAlt,
 } from '@mui/icons-material'
 
-import { $projects } from '../store/projects'
+import { $projects } from '../../store/projects'
 import { useStore } from 'effector-react'
 
 type SideBarPropsType = {

@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { Search } from './Search'
 
 export default {
-  title: 'Example/Search',
+  title: 'Main/Header/Search',
   component: Search,
   argTypes: {},
 } as ComponentMeta<typeof Search>

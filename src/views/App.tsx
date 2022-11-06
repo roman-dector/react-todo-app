@@ -12,8 +12,8 @@ import { useStore } from 'effector-react'
 import { $appStatus, initializeAppFx } from '../store/app'
 
 import { Header } from './Header/Header'
-import { SideBar } from './SideBar'
-import { ProjectPage } from './common/ProjectPage'
+import { SideBar } from './SideBar/SideBar'
+import { ProjectPage } from '../components/ProjectPage'
 
 export const App = () => {
   const appStatus = useStore($appStatus)

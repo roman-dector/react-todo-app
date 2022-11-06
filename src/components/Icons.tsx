@@ -26,11 +26,7 @@ export const withIconStyle = (
   Component: FC,
   options: optionsType = {
     bg: true,
-    bgColor: 'var(--icons-background)',
-    fontSize: '22px',
     blink: true,
-    color: 'var(--icons-color)',
-    padding: '0px',
   }
 ) => {
   const Icon = (props: any) => (
@@ -43,12 +39,12 @@ export const withIconStyle = (
         (options.blink && styles['blink'])
       }
       style={{
-        fontSize: options.fontSize,
-        color: options.color,
-        padding: options.padding,
+        fontSize: options.fontSize || '21px',
+        padding: options.padding || '0px',
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.backgroundColor = options.bgColor
+        e.currentTarget.style.backgroundColor =
+          options.bgColor || 'var(--icons-background)'
       }}
       onMouseLeave={e => {
         e.currentTarget.style.backgroundColor = 'transparent'
@@ -67,6 +63,7 @@ export const MoreHorizIcon = withIconStyle(MoreHoriz)
 
 export const MoreHorizWithoutBg = withIconStyle(MoreHoriz, {
   bg: false,
+  blink: true,
 })
 
 export const TuneIcon = withIconStyle(Tune)

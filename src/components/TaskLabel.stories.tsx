@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 import { TaskLabel } from './TaskLabel'
 
 export default {
-  title: 'Example/TaskLabel',
+  title: 'Common/TaskLabel',
   component: TaskLabel,
   argTypes: {
     name: {

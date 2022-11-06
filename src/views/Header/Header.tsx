@@ -8,7 +8,7 @@ import {
   Add,
 } from '@mui/icons-material'
 
-import { withIconStyle } from '../common/Icons'
+import { withIconStyle } from '../../components/Icons'
 import { Search } from './Search'
 import { FC, ReactComponentElement, ReactElement } from 'react'
 

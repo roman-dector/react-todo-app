@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styles from './Search.module.scss'
 
 import { Search as SearchIcon } from '@mui/icons-material'
-import { withIconStyle } from '../common/Icons'
+import { withIconStyle } from '../../components/Icons'
 
 export const Search = () => {
   const [searchPhrase, setSearchPhrase] = useState('')
